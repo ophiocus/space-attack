@@ -1,0 +1,160 @@
+<div id="space-attack-mockup">
+  <style>
+    #space-attack-mockup {
+      --sa-ink: light-dark(#17323b, #e4f2eb);
+      --sa-muted: light-dark(#557179, #9ab4b2);
+      --sa-panel: light-dark(#fffdf1, #20363a);
+      --sa-line: light-dark(#cad8c9, #42605e);
+      --sa-mint: #9be4bb;
+      --sa-cyan: #79e3df;
+      color: var(--sa-ink);
+      font: 500 15px/1.35 system-ui, -apple-system, Segoe UI, sans-serif;
+      width: 100%;
+    }
+    #space-attack-mockup * { box-sizing: border-box; }
+    #space-attack-mockup .mock-top { align-items: center; display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; margin: 0 0 10px; }
+    #space-attack-mockup .mock-label { color: var(--sa-muted); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    #space-attack-mockup .view-switch { display: flex; gap: 6px; }
+    #space-attack-mockup button { background: var(--sa-panel); border: 1px solid var(--sa-line); border-radius: 7px; color: var(--sa-ink); cursor: pointer; font: inherit; padding: 8px 12px; }
+    #space-attack-mockup button[aria-pressed="true"] { background: var(--sa-mint); border-color: var(--sa-mint); color: #17323b; }
+    #space-attack-mockup .stage { aspect-ratio: 16 / 9; background: #142629; border: 1px solid var(--sa-line); border-radius: 14px; isolation: isolate; min-height: 480px; overflow: hidden; position: relative; width: 100%; }
+    #space-attack-mockup .sky { background: radial-gradient(ellipse at 51% 53%, rgba(41,85,83,.38), transparent 40%), radial-gradient(ellipse at 79% 18%, rgba(78,116,100,.28), transparent 25%), radial-gradient(ellipse at 18% 78%, rgba(38,80,82,.32), transparent 31%), linear-gradient(155deg,#182e31 0%,#122326 58%,#1a3031 100%); inset: 0; position: absolute; z-index: -2; }
+    #space-attack-mockup .stars { background-image: radial-gradient(circle,rgba(222,244,210,.86) 1px,transparent 1.7px),radial-gradient(circle,rgba(121,227,223,.7) 1px,transparent 1.8px),radial-gradient(circle,rgba(255,255,255,.45) 1px,transparent 1.6px); background-position: 7px 12px,38px 21px,17px 54px; background-size: 93px 86px,137px 117px,71px 109px; inset: 0; opacity: .72; position: absolute; z-index: -1; }
+    #space-attack-mockup .planet { background: radial-gradient(circle at 34% 29%,#efce89 0 5%,#cf9e6e 6% 38%,#875f58 68%,#4f4243 100%); border: 7px solid rgba(36,53,49,.75); border-radius: 50%; box-shadow: 0 13px 0 rgba(8,18,19,.26),0 0 46px rgba(230,184,115,.12); height: 118px; left: 12%; opacity: .72; position: absolute; top: 25%; width: 118px; }
+    #space-attack-mockup .planet::after { border: 2px solid rgba(243,198,111,.53); border-radius: 50%; content: ""; height: 152px; left: -24px; position: absolute; top: 16px; transform: rotate(-22deg); width: 152px; }
+    #space-attack-mockup .island { background: linear-gradient(155deg,#769a7d,#405e58 60%,#2c4847); border: 4px solid #314d49; border-radius: 46% 54% 42% 58% / 57% 42% 58% 43%; box-shadow: 0 10px 0 #0b191b,inset 0 5px 0 rgba(207,227,177,.18); height: 68px; position: absolute; transform: rotate(-12deg); width: 112px; }
+    #space-attack-mockup .island.one { left: 68%; top: 28%; }
+    #space-attack-mockup .island.two { height: 48px; left: 31%; top: 69%; transform: rotate(16deg); width: 79px; }
+    #space-attack-mockup .island.three { height: 39px; left: 76%; top: 70%; transform: rotate(7deg); width: 68px; }
+    #space-attack-mockup .crystal { background: linear-gradient(130deg,#a3e8c4,#489c91); clip-path: polygon(50% 0,94% 31%,73% 100%,27% 100%,6% 31%); filter: drop-shadow(0 4px 4px rgba(0,0,0,.34)); height: 28px; left: 72%; position: absolute; top: 29%; width: 21px; }
+    #space-attack-mockup .rocks { background: #8a7667; border-radius: 38% 62% 51% 49%; box-shadow: 19px 6px 0 -4px #74685f,39px 2px 0 -7px #b09374; height: 17px; left: 34%; position: absolute; top: 73%; transform: rotate(8deg); width: 19px; }
+    #space-attack-mockup .hud-top { align-items: flex-start; display: grid; gap: 10px; grid-template-columns: 1fr auto 1fr; left: 22px; position: absolute; right: 22px; top: 18px; z-index: 2; }
+    #space-attack-mockup .hud-block { background: rgba(20,39,41,.84); backdrop-filter: blur(7px); border: 1px solid rgba(179,221,192,.22); border-radius: 8px; color: #e4f2eb; min-width: 118px; padding: 8px 12px; }
+    #space-attack-mockup .hud-block.center { justify-self: center; text-align: center; }
+    #space-attack-mockup .hud-block.right { justify-self: end; text-align: right; }
+    #space-attack-mockup .hud-cap { color: #9ab4b2; display: block; font-size: 10px; letter-spacing: .15em; margin-bottom: 2px; text-transform: uppercase; }
+    #space-attack-mockup .hud-value { font-size: 21px; font-weight: 700; letter-spacing: .04em; }
+    #space-attack-mockup .hud-sub { color: #b4c9be; font-size: 10px; }
+    #space-attack-mockup .pause { min-width: auto; padding: 6px 9px; }
+    #space-attack-mockup .pause-line { background: currentColor; display: inline-block; height: 13px; margin: 0 2px; vertical-align: -2px; width: 3px; }
+    #space-attack-mockup .ship { background: linear-gradient(145deg,#d7f4cc 8%,#85d8bb 64%,#438a8a); border: 2px solid #d8ffe3; border-radius: 48% 48% 35% 35%; box-shadow: 0 0 24px rgba(121,227,223,.55),0 0 2px 6px rgba(121,227,223,.12); height: 48px; left: 50%; position: absolute; top: 54%; transform: translate(-50%,-50%); width: 34px; z-index: 1; }
+    #space-attack-mockup .ship::before { border-bottom: 30px solid #e7ffd8; border-left: 14px solid transparent; border-right: 14px solid transparent; content: ""; left: 1px; position: absolute; top: -19px; }
+    #space-attack-mockup .flame { background: linear-gradient(#f3c66f,#f08e79 70%,transparent); border-radius: 50%; height: 24px; left: 10px; position: absolute; top: 38px; width: 10px; }
+    #space-attack-mockup .enemy { background: radial-gradient(circle at 32% 28%,#f7d88f 0 13%,#df806f 14% 56%,#753f52 100%); border: 2px solid rgba(255,221,159,.84); border-radius: 39% 61% 55% 45%; box-shadow: 0 0 15px rgba(240,142,121,.3),0 5px 0 rgba(7,16,18,.35); height: 34px; position: absolute; width: 34px; }
+    #space-attack-mockup .enemy::before, #space-attack-mockup .enemy::after { background: #f8d790; border-radius: 50%; content: ""; height: 5px; position: absolute; top: 11px; width: 5px; }
+    #space-attack-mockup .enemy::before { left: 8px; }
+    #space-attack-mockup .enemy::after { right: 8px; }
+    #space-attack-mockup .enemy.a { left: 40%; top: 30%; }
+    #space-attack-mockup .enemy.b { left: 60%; top: 42%; transform: scale(.78); }
+    #space-attack-mockup .enemy.c { left: 26%; top: 49%; transform: scale(.68); }
+    #space-attack-mockup .bolt { background: #a2fff0; border-radius: 50%; box-shadow: 0 0 12px 4px rgba(121,227,223,.64); height: 8px; position: absolute; width: 8px; }
+    #space-attack-mockup .bolt.one { left: 51%; top: 45%; }
+    #space-attack-mockup .bolt.two { left: 49%; top: 37%; }
+    #space-attack-mockup .bolt.three { left: 47%; top: 29%; }
+    #space-attack-mockup .notice { background: rgba(22,43,43,.76); border: 1px solid rgba(243,198,111,.52); border-radius: 20px; color: #f4d696; font-size: 11px; left: 50%; letter-spacing: .13em; padding: 7px 14px; position: absolute; top: 31%; transform: translateX(-50%); z-index: 2; }
+    #space-attack-mockup .hud-bottom { align-items: end; bottom: 16px; display: flex; gap: 14px; justify-content: space-between; left: 22px; position: absolute; right: 22px; z-index: 2; }
+    #space-attack-mockup .hull, #space-attack-mockup .weapon { background: rgba(20,39,41,.88); border: 1px solid rgba(179,221,192,.22); border-radius: 9px; color: #e4f2eb; padding: 9px 12px; width: min(280px,38%); }
+    #space-attack-mockup .hull-head, #space-attack-mockup .weapon-head { align-items: center; display: flex; justify-content: space-between; }
+    #space-attack-mockup .hull strong, #space-attack-mockup .weapon strong { font-size: 12px; letter-spacing: .08em; }
+    #space-attack-mockup .hull-number, #space-attack-mockup .weapon-state { color: #9be4bb; font-size: 11px; }
+    #space-attack-mockup .bar { background: rgba(186,216,195,.18); border-radius: 10px; height: 7px; margin: 7px 0 6px; overflow: hidden; }
+    #space-attack-mockup .bar-fill { background: linear-gradient(90deg,#9be4bb,#79e3df); border-radius: inherit; height: 100%; width: 72%; }
+    #space-attack-mockup .lives { color: #f3c66f; font-size: 10px; letter-spacing: .12em; }
+    #space-attack-mockup .weapon-icon { align-items: center; background: rgba(121,227,223,.12); border-radius: 6px; color: #9be4bb; display: inline-flex; font-size: 11px; height: 28px; justify-content: center; margin-right: 8px; width: 28px; }
+    #space-attack-mockup .weapon-info { align-items: center; display: flex; }
+    #space-attack-mockup .keys { bottom: 22px; color: rgba(228,242,235,.78); font-size: 10px; left: 50%; letter-spacing: .03em; position: absolute; transform: translateX(-50%); white-space: nowrap; z-index: 2; }
+    #space-attack-mockup kbd { background: rgba(231,248,231,.11); border: 1px solid rgba(231,248,231,.25); border-radius: 4px; color: #eff8e8; font: inherit; padding: 2px 5px; }
+    #space-attack-mockup .local-badge { background: rgba(20,39,41,.88); border: 1px solid rgba(243,198,111,.42); border-radius: 4px; color: #f3d89d; font-size: 9px; letter-spacing: .12em; padding: 5px 8px; position: absolute; right: 22px; text-transform: uppercase; top: 79px; z-index: 3; }
+    #space-attack-mockup .menu { align-items: center; background: linear-gradient(90deg,rgba(13,29,31,.28),rgba(13,29,31,.06) 44%,rgba(13,29,31,.36)); display: flex; inset: 0; justify-content: center; position: absolute; z-index: 4; }
+    #space-attack-mockup .menu-card { background: rgba(21,41,42,.91); backdrop-filter: blur(10px); border: 1px solid rgba(190,229,194,.34); border-radius: 13px; box-shadow: 0 18px 44px rgba(0,0,0,.34); color: #e8f2df; max-width: 410px; padding: 25px 30px 24px; text-align: center; width: calc(100% - 36px); }
+    #space-attack-mockup .eyebrow { color: #9be4bb; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; }
+    #space-attack-mockup .game-title { color: #f0e8c9; font-size: clamp(28px,5vw,48px); font-weight: 800; letter-spacing: .1em; line-height: 1; margin: 9px 0 8px; text-shadow: 0 3px 0 #755a49; }
+    #space-attack-mockup .tagline { color: #bfd1c1; font-size: 13px; margin: 0 0 18px; }
+    #space-attack-mockup .start-button { background: #9be4bb; border: 0; color: #17323b; font-weight: 700; letter-spacing: .1em; min-width: 170px; text-transform: uppercase; }
+    #space-attack-mockup .menu-meta { color: #a8bfad; font-size: 10px; margin-top: 14px; }
+    #space-attack-mockup .menu-keys { border-top: 1px solid rgba(190,229,194,.2); display: flex; flex-wrap: wrap; gap: 7px 12px; justify-content: center; margin-top: 17px; padding-top: 14px; }
+    #space-attack-mockup .menu-key { color: #d3e1d4; font-size: 10px; }
+    #space-attack-mockup .game-state[hidden], #space-attack-mockup .pause-overlay[hidden] { display: none; }
+    #space-attack-mockup .pause-overlay { align-items: center; background: rgba(13,28,29,.65); display: flex; inset: 0; justify-content: center; position: absolute; z-index: 5; }
+    #space-attack-mockup .pause-card { background: rgba(21,41,42,.97); border: 1px solid rgba(190,229,194,.34); border-radius: 12px; color: #e8f2df; padding: 20px 28px; text-align: center; }
+    #space-attack-mockup .pause-card h2 { font-size: 22px; letter-spacing: .16em; margin: 0 0 12px; }
+    #space-attack-mockup .pause-card button { margin: 4px; }
+    #space-attack-mockup .footnote { color: var(--sa-muted); font-size: 12px; margin-top: 9px; }
+    @media (max-width:620px) {
+      #space-attack-mockup .stage { aspect-ratio: auto; min-height: 520px; }
+      #space-attack-mockup .hud-top { gap: 5px; left: 10px; right: 10px; top: 10px; }
+      #space-attack-mockup .hud-block { min-width: 0; padding: 6px 8px; }
+      #space-attack-mockup .hud-value { font-size: 16px; }
+      #space-attack-mockup .hud-bottom { bottom: 10px; flex-wrap: wrap; left: 10px; right: 10px; }
+      #space-attack-mockup .hull, #space-attack-mockup .weapon { width: calc(50% - 7px); }
+      #space-attack-mockup .keys { bottom: 93px; font-size: 9px; }
+      #space-attack-mockup .local-badge { right: 10px; top: 71px; }
+      #space-attack-mockup .planet { height: 82px; width: 82px; }
+      #space-attack-mockup .planet::after { height: 108px; width: 108px; }
+      #space-attack-mockup .menu-card { padding: 22px 18px; }
+    }
+  </style>
+  <div class="mock-top">
+    <span class="mock-label">Space Attack · visual direction</span>
+    <div class="view-switch" role="group" aria-label="Mockup screen">
+      <button type="button" data-show="landing" aria-pressed="true">Landing menu</button>
+      <button type="button" data-show="playing" aria-pressed="false">In game</button>
+    </div>
+  </div>
+  <main class="stage" aria-label="Space Attack game screen mockup">
+    <div class="sky"></div><div class="stars"></div>
+    <div class="planet" aria-hidden="true"></div>
+    <div class="island one" aria-hidden="true"></div><div class="island two" aria-hidden="true"></div><div class="island three" aria-hidden="true"></div>
+    <div class="crystal" aria-hidden="true"></div><div class="rocks" aria-hidden="true"></div>
+    <span class="local-badge">Local preview · not hosted</span>
+    <section class="game-state" data-screen="playing" aria-label="In-game HUD" hidden>
+      <div class="hud-top">
+        <div class="hud-block"><span class="hud-cap">Score</span><span class="hud-value">12,480</span><div class="hud-sub">BEST 16,920</div></div>
+        <div class="hud-block center"><span class="hud-cap">Wave</span><span class="hud-value">03</span><div class="hud-sub">2 ENEMIES LEFT</div></div>
+        <div class="hud-block right"><button type="button" class="pause" aria-label="Pause game"><span class="pause-line"></span><span class="pause-line"></span></button><span class="hud-cap">PAUSE</span></div>
+      </div>
+      <div class="notice">WAVE 03 · INCOMING</div>
+      <div class="enemy a" aria-label="Enemy drone"></div><div class="enemy b" aria-label="Enemy drone"></div><div class="enemy c" aria-label="Enemy drone"></div>
+      <div class="bolt one" aria-hidden="true"></div><div class="bolt two" aria-hidden="true"></div><div class="bolt three" aria-hidden="true"></div>
+      <div class="ship" aria-label="Player ship"><span class="flame"></span></div>
+      <div class="hud-bottom">
+        <div class="hull"><div class="hull-head"><strong>HULL</strong><span class="hull-number">72 / 100</span></div><div class="bar"><div class="bar-fill"></div></div><div class="lives">LIVES&nbsp; ◆ ◆ ◆</div></div>
+        <div class="keys"><kbd>WASD</kbd> Move &nbsp; <kbd>↑ ↓ ← →</kbd> Aim &nbsp; <kbd>SPACE</kbd> Fire</div>
+        <div class="weapon"><div class="hull-head"><div class="weapon-info"><span class="weapon-icon">✦</span><strong>BLASTER</strong></div><span class="weapon-state">READY</span></div><div class="hud-sub">AUTO-FIRE · SINGLE SHOT</div></div>
+      </div>
+    </section>
+    <section class="game-state menu" data-screen="landing" aria-label="Landing menu">
+      <div class="menu-card">
+        <div class="eyebrow">A tiny ship. A very big problem.</div>
+        <h1 class="game-title">SPACE<br>ATTACK</h1>
+        <p class="tagline">Survive the incoming waves.</p>
+        <button type="button" class="start-button" data-start>Start Run</button>
+        <div class="menu-meta">LOCAL BEST&nbsp; · &nbsp;16,920</div>
+        <div class="menu-keys"><span class="menu-key"><kbd>WASD</kbd> Move</span><span class="menu-key"><kbd>Arrows</kbd> Aim</span><span class="menu-key"><kbd>Space</kbd> Fire</span></div>
+      </div>
+    </section>
+    <section class="pause-overlay" data-pause hidden aria-label="Paused">
+      <div class="pause-card"><h2>PAUSED</h2><button type="button" data-resume>Resume</button><button type="button" data-reset>Restart Run</button></div>
+    </section>
+  </main>
+  <div class="footnote">HUD stays at the edges; the center remains open for combat.</div>
+  <script>
+    const root = document.getElementById("space-attack-mockup");
+    const menu = root.querySelector('[data-screen="landing"]');
+    const playing = root.querySelector('[data-screen="playing"]');
+    const pauseOverlay = root.querySelector("[data-pause]");
+    const viewButtons = root.querySelectorAll("[data-show]");
+    function showScreen(name) {
+      const inGame = name === "playing";
+      menu.hidden = inGame;
+      playing.hidden = !inGame;
+      pauseOverlay.hidden = true;
+      viewButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.show === name)));
+    }
+    viewButtons.forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.show)));
+    root.querySelector("[data-start]").addEventListener("click", () => showScreen("playing"));
+    root.querySelector(".pause").addEventListener("click", () => { pauseOverlay.hidden = false; });
+    root.querySelector("[data-resume]").addEventListener("click", () => { pauseOverlay.hidden = true; });
+    root.querySelector("[data-reset]").addEventListener("click", () => showScreen("landing"));
+  </script>
+</div>

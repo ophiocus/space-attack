@@ -5,7 +5,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
-const ASSET_ROOT = '/assets/models/kenney-space-kit/';
+const ASSET_ROOT = `${import.meta.env?.BASE_URL ?? '/'}assets/models/kenney-space-kit/`;
 const ASSET_FILES = {
   player: 'craft_speederA.glb',
   enemy: 'alien.glb',

@@ -13,6 +13,17 @@ npm run dev
 
 Open the local URL printed by Vite (normally `http://127.0.0.1:5173/`). Create a static production bundle with `npm run build`; Vite writes it to `dist/`.
 
+## Publish on GitHub Pages
+
+The repository includes a GitHub Actions workflow that runs the unit tests, builds the Vite app, and deploys `dist/` to GitHub Pages whenever `main` is pushed. It sets the Vite base path for repository subpaths and the model loader uses that base for local assets.
+
+1. Create a **public** GitHub repository (GitHub Free supports Pages for public repositories).
+2. Add it as this repository's `origin` remote and push the `main` branch. Push the project files, not `node_modules/` or the generated submission ZIP.
+3. In GitHub, open the repository's **Settings → Pages** and select **GitHub Actions** as the build and deployment source.
+4. Open the **Actions** tab and wait for “Deploy Space Attack to GitHub Pages” to complete. The run shows the playable Pages URL.
+
+The deployed site and source repository are public, so review the files before pushing. Do not add credentials or private data.
+
 ## Controls
 
 **Asteroid Mode**

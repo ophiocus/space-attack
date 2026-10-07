@@ -1,0 +1,331 @@
+SPACE ATTACK — CHRONOLOGICAL USER PROMPT HISTORY
+
+Plain-text archive of user-authored prompts, follow-ups, corrections, and task context available in this Codex conversation. User wording is retained as supplied where available. Assistant responses are not included. Chat titles and IDs were not available, so the labels show order and role without inventing titles or IDs.
+
+CODEX CHAT 1 — INITIAL CONTACT THREAD
+Order: first thread. The user said this was the initial contact thread and planned to fork from here.
+
+USER MESSAGE 1
+
+get the documentation for this project here,&#x20;
+
+[https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLSez2MofiQ-IcODPPXtsIeaqrH0WxZ9hsuF3b0oopN3Mi1kGgA/viewform?usp%3Dsharing%26ouid%3D105971630823772469064&source=gmail&ust=1791461640875000&sa=E](https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLSez2MofiQ-IcODPPXtsIeaqrH0WxZ9hsuF3b0oopN3Mi1kGgA/viewform?usp%3Dsharing%26ouid%3D105971630823772469064\&source=gmail\&ust=1791461640875000\&sa=E)
+
+
+
+additionally look at this email body that points to that link
+
+
+
+Hi Carlos,
+
+This is Ketevan from G2i. Your next step is a short calibration task. It's paid at 50% of your hourly rate, capped at two hours, and included in your first payment once you join us.
+
+Please submit it by **tomorrow, October 8, at 9:00 PM BRT / 8:00 PM ET / 2:00 AM CEST (Oct 9th)**.
+
+The task: build Space Attack, a small, polished browser arcade game where the player pilots a spaceship against waves of enemies. Reference: [https://www.youtube.com/watch?v=jYIC8ADIArc](https://www.youtube.com/watch?v=jYIC8ADIArc)
+
+It must include:
+
+- Keyboard movement and firing, with on-screen instructions
+- Enemy waves, working collisions, a visible score and health/lives
+- Increasing difficulty
+- A start screen, game over and restart
+
+Rules:
+
+- 2 hours of active work max, including your reflection. Track your time.
+- Use Codex only for all the code. No other AI tools.
+- Start a fresh project and play-test it yourself.
+- Save all your prompts and write the reflection in your own words.
+- If something is unfinished, submit what you have and explain the issue.
+
+Submit everything here (allow 15 to 20 minutes for the form):\
+[https://docs.google.com/forms/d/e/1FAIpQLSez2MofiQ-IcODPPXtsIeaqrH0WxZ9hsuF3b0oopN3Mi1kGgA/viewform?usp=sharing&ouid=105971630823772469064](https://docs.google.com/forms/d/e/1FAIpQLSez2MofiQ-IcODPPXtsIeaqrH0WxZ9hsuF3b0oopN3Mi1kGgA/viewform?usp=sharing\&ouid=105971630823772469064)
+
+If you have any questions, just reply here.
+
+Best,
+
+USER MESSAGE 2
+
+This is the initial contact thread, I will fork from here, rename and consider archived
+
+
+CODEX CHAT 2 — PROJECT PLANNING AND IMPLEMENTATION THREAD
+Order: second thread, following the planned fork from Chat 1. Exact title and ID unavailable.
+
+USER MESSAGE 1
+
+In order to complete the task we will first plan the studio that will run the project. 
+
+Plan the workflow of this gaming studio, write the results as guide files for the agents that will finish the job:
+
+
+The game studio is split in departments that represent knowledge areas and you will perform the sensible roles from within these departments.
+
+
+The production of the actual game will follow stages in which each department needs to contribute and clear the project stage.
+
+
+The Game:
+
+Core: this is a single player horde style game, it should comply with "twin stick shooter", with PC compatible keymaps, "top down" render composition, refreshing the ask:
+
+- Keyboard compatible twin stick shooter layout
+- Increasing difficulty and variety of obstacles, with sensible power ups, health (nice to have, ambient triggers, foe traps), high scores
+- Based on the classic space attack, re imagined to take advantage of latest game technologies
+- Do an online pass for free low poly 3d assets and build a local library, space sound fx
+- Use the threeJS core 3D engine, create the game engine and final game around it
+
+
+Nice to haves:&#x20;
+
+- The visuals should be inspired in diorama and tilt shift styles, giving the render space a cute, tiny miniature look
+- Twin stick shooter should support gamepads
+- Sound can be midi but Would be great to have some samples
+
+
+
+For context remember this is meant to ba a web based game to run on a browser, if you implement webGPU make sure you add a performance /CPU mode.
+
+USER MESSAGE 2
+
+about the production workflow:
+Core idea: iterations, lets complete individual units of functionality starting with a solid, well principled core game engine running, from there I will steer based on iteration prompts.
+
+Framework:
+three JS core engine
+js+css+html for the base program launcher (should run local with a local run warning alert bar)
+your choice of framework to work the actual game engine (working title ACT engine)
+
+godspeed
+
+USER MESSAGE 3
+
+Check the plan once, according to you is there anything missing and how would you suggest approaching the actual coding and building of the game
+
+USER MESSAGE 4
+
+All approved, one last thing, at this stage can you mock up what the game will look like?
+
+Also I just want to make sure you have this: the HUD game item needs more specificity as well, and a landing menu (abridged)
+
+USER MESSAGE 5
+
+The visual pass is great for hud and menu, definitely approved, but make sure it does NOT influence game actual, game actual visuals will come exclusively from the asset hunt.
+
+USER MESSAGE 6
+
+Continue towards build
+
+USER MESSAGE 7 — ITERATION 1 / QA
+
+Feedback (iteration 1/QA):
+the enemy positions are chained to the player, they have their movement and on top the movement of the player this is wrong and shows an error in world parenting.
+
+issue 1:
+the player ship is huge, set the camera arm further apart, consider a dynamic scale of 15 ship model sizes for the screen, currently its 2.7 or something
+
+issue 2:
+the player ship and the gun / bullets are not properly aligned/parented, they fire and look at different positions
+
+issue 3: hitboxes make no sense to me, damage is invisible and hits appears random
+
+issue 4:
+do a sound pass with simple midi effects for fire hit damage
+
+REASONING: Are we properly using the 3 Dimensions in code for movement/hit/fire/asset load?
+
+USER MESSAGE 8
+
+stop
+
+USER MESSAGE 9
+
+I will do the checks directly by playing, you only do code and unit testing (liminal, at that)
+
+USER MESSAGE 10
+
+I believe the gameplay you have built is more akin to asteroid than space attack (atari space invaders bootleg title)
+
+I propose we dont waste this effort and split a game mode in the start screen, allowing players to play legacy mode (you will reuse all to create this gamemode after iterations on core mode are complete), this current mode is now codenamed asteroid mode
+
+Show me current pass complete when done
+
+USER MESSAGE 11 — ROOT-CAUSE BUG REPORT / REDRAW REQUEST
+
+bug:
+gameplay still does not make sense: wrong acceleration of enemies, damage is invisible hits are random and dont report score.
+
+test:
+remove all speed from enemies
+record enemy position
+move craft to maximum cardinal points
+record enemy position
+
+observe
+enemy position drift
+
+consider only root cause and fix
+
+From here redraw the game scene so that actors are all independent (use a luna 5 agent to read from unreal actors basics online or your memory).
+
+Then let me test again
+
+USER MESSAGE 12
+
+CRITICAL GAMEPLAY PASS WELL DONE
+Minor: the ship is backwards on the screen up down axis fix only that and tell me to check again.
+
+USER MESSAGE 13
+
+Consider the core engine complete.
+
+we will work on the modes, we have two modes, one is engine complete (asteroid), we now need to create the legacy mode for proper space inveders.
+
+
+roadmap
+
+- L0: learn the space invaders legacy rules: enemies zig zag donwards towards a player that can only move on the left right dimension on the ground, firing up. Zone of the enemies fire slow rounds at sparse intervals. The terrain has floating blockers that get damaged both ways in cross fire, stopping rounds
+- L1: do an architectural plan: two game modes on the same engine, look for code dependencies in the asteroid mode that would need to be moved out or elsewhere so as to make the game modes fully modular
+- L2: Stub the new legacy game mode and implement
+- L3: Hand over to test
+
+
+For simplicity current advanced assets (ship that can fire enemies that move) can be re used then reworked in the new game mode, either override or clone, whatever is simpler.
+
+USER MESSAGE 14 — LEGACY HASTE / ASTEROID SPLIT FOLLOW-UP
+
+legacy mode:
+
+Bug: the haste is like, cube of haste, when it should be haste plus some haste number minus remaining enemies or like that. calcutate that the last enemy's speed cannot be more than thrice the ship's speed.
+
+Both modes: Enemies primer
+
+Legacy: the invaders all have the same speed, ai atrirbutes, but are different shapes.
+Asteroid: in the original asteroid the (enemy)rocks would split on inpact, one type plits into other two types, and so on like a binary tree.
+
+Gameplay changes:
+
+LEGACY: look for more alien looking shapes in the assets and generate once a ramdomized grid for the spawns, change the grid by an offset in a closed array of enemy model references to give the enemy grid processor cheap randomness (the offset is the only runtime random)
+
+ASTEROID: use the same random closed loop offset arragement to order the breakdown on impact of enemy ships, Enemies are now three types, A,B,C, a splits into two b splits into two c they spawn in waves according to horde game logic
+
+USER MESSAGE 15 — ASTEROID MODEL / CAMERA FOLLOW-UP
+
+The game modes are technically complete.
+
+tune-ups:
+asteroid:
+
+Replace the use of speeder* models, replace them with rock crystal large and rock large models.
+
+The actual enemies are composit models: take the same model twice, flip one horizontally so their bases overlap
+
+Enemies no longer shoot at player if they ever did.
+
+Increase the camera distance from the calculated 1/15 to 1/21
+
+show me
+
+USER MESSAGE 16 — VISUAL PASS / CREDITS
+
+Last tune up, for both modes, visuals
+
+It is now time to fully focus on diorama camera works and tilt shift visuals
+
+confirm you can add gpu support with the cpu cutover or confirm working platform scope at delivery
+
+Lastly prepare a thank you scroller that starts after game over screen:
+lists all assets and frameworks used, with urls where viable
+lists all the people involved in the process (ask me for names later add placeholders)
+show my name as author, yours as co author (yes, i respect you that way)
+ends with a generic ginger bread man recipe
+
+USER MESSAGE 17 — CAST
+
+Cast:
+Carlos: Caffe ingestion
+Sandra: Homemaker
+Antonia: Morale Booster
+
+USER MESSAGE 18 — ASTEROID PHYSICS / LEGACY CLEARANCE FOLLOW-UP
+
+game mode tune up:
+
+asteroid:
+
+Rocks are not sentient, lol:
+
+- rocks spawn at a fixed velocity, broken up rock spwans accelerated in random at a new random vector
+- rock space logic folds onto the screen: a rock that exits the screen in an angle enters at the other side of the screen in the same vector
+
+
+legacy:
+
+- make ships rate of fire constant, the rate should be a function of average time to success under a given hit rate, to normal mode is all enemies killed at 60% accuracy
+- when an invader touches a barrier it crumbles to the ground with no hit box
+
+USER MESSAGE 19 — CORRECTION
+
+😂 bro: make 
+
+- the barrier
+
+crumble to the ground
+
+not
+
+- the invader
+
+too funny, cant you see that breaks the lose state?
+
+USER MESSAGE 20 — LEGACY CADENCE
+
+legacy
+increase rate of fire by 20% success accuracy required to 40%
+
+USER MESSAGE 21 — VISUAL ITERATION
+
+last:
+visual pass
+tilt shift focus should always be the ship, seen clear, everything around slowly defocusses with distance
+
+find a camera angle that is not zero on any axis, and still frames the gameplay correctly, so no exaggerated tilt on any axis
+
+asteroid: give the props in the scene some space bound in place rotation , vary their sizes, they are background only and have no impact only visual filler
+
+invaders, try to find a camera tilt that would allow use to place some decorative props on the floor
+
+USER MESSAGE 22 — LEGACY BLUR / HASTE CORRECTION
+
+invaders: cap the dissolve, its too strong where the invaders are, also reduce they overall haste at the end to 2x only
+
+USER MESSAGE 23 — LEGACY FIRING FOLLOW-UP
+
+invaders increase rate of fire 30%
+
+USER MESSAGE 24 — FORM REVIEW
+
+👌prepare the form, read it and tell me how it expects delivery
+
+Did you add a thank you for the assets with a link?
+
+USER MESSAGE 25 — ACTIVE-TIME RECOUNT
+
+give me the active minutes from your recount
+
+USER MESSAGE 26 — DELIVERABLE PACKAGING
+
+package the entire content of this thread into a deliverable to upload
+
+USER MESSAGE 27 — PROMPT-HISTORY CORRECTION / DELIVERABLE FORMAT
+
+this is not in my own words
+
+Complete chronological prompt-history link
+
+Include exact prompts, follow-ups, corrections, and failed attempts in chronological order. Label separate Codex chats and show their order. A text or Markdown document is fine.
+
+create a textbox with no formating
